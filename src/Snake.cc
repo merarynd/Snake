@@ -1,23 +1,4 @@
-// #include "Snake.h"
-
-// #include <conio.h>
-
-#include <iostream>
-
-void Setup();  // настройка параметров при старте игры
-void Draw();  // отрисовка карты
-void Input();  // отслеживание нажатий пользователя
-void Logic();  // логика игры
-// void Output();  // итоговый выход
-bool gameOver;
-const int width = 20;
-const int height = 20;
-int x, y, fruitX, fruitY, score;
-int tailX[100], tailY[100];
-int nTail;
-enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
-eDirection dir;
-
+#include "Snake.h"
 void Setup() {
   gameOver = false;
   dir = STOP;
@@ -64,25 +45,27 @@ void Draw() {
 }
 
 void Input() {
-  //   if (std::_kbhit()) {
-  //     switch (std::_getch()) {
-  //       case 'a':
-  //         dir = LEFT;
-  //         break;
-  //       case 'd':
-  //         dir = RIGHT;
-  //         break;
-  //       case 'w':
-  //         dir = UP;
-  //         break;
-  //       case 's':
-  //         dir = DOWN;
-  //         break;
-  //       case 'x':
-  //         gameOver = true;
-  //         break;
-  //     }
-  //   }
+  if (std::cin.rdbuf()->in_avail() > 0) {
+    char key;
+    std::cin >> key;
+    switch (key) {
+      case 'a':
+        dir = LEFT;
+        break;
+      case 'd':
+        dir = RIGHT;
+        break;
+      case 'w':
+        dir = UP;
+        break;
+      case 's':
+        dir = DOWN;
+        break;
+      case 'x':
+        gameOver = true;
+        break;
+    }
+  }
 }
 void Logic() {
   int prevX = tailX[0];
@@ -138,17 +121,46 @@ void Logic() {
   }
 }
 
-int main() {
+void Output() {
   Setup();
   while (!gameOver) {
     Draw();
     Input();
     Logic();
   }
+}
+
+int _kbhit() {
+  std::cout << "Press any key to stop the loop..." << std::endl;
+
+  while (!std::cin.fail()) {
+    if (std::cin.peek() != EOF) {
+      break;  // Прерываем цикл, если была нажата клавиша
+    }
+  }
+
+  std::cout << "Key pressed! Exiting the program." << std::endl;
+
   return 0;
 }
 
-// int main() {
-//   Output();
-//   return 0;
-// }
+int _getch() {
+  char ch;
+  std::cout << "Press any key to stop the loop..." << std::endl;
+
+  while (1) {
+    if (std::cin.get(ch)) {
+      break;  // Прерываем цикл, если была нажата клавиша
+    }
+  }
+
+  std::cout << "Key pressed! Exiting the program." << std::endl;
+
+  return 0;
+}
+// extern void Output();
+
+int main() {
+  Output();
+  return 0;
+}
