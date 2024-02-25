@@ -12,8 +12,8 @@ void Draw();  // отрисовка карты
 void Input();  // отслеживание нажатий пользователя
 void Logic();   // логика игры
 void Output();  // итоговый выход
-int _kbhit();
-int _getch();
+// int _kbhit();
+// int _getch();
 
 //  private:
 bool gameOver;

@@ -45,10 +45,8 @@ void Draw() {
 }
 
 void Input() {
-  if (std::cin.rdbuf()->in_avail() > 0) {
-    char key;
-    std::cin >> key;
-    switch (key) {
+  if (_kbhit()) {
+    switch (_getch()) {
       case 'a':
         dir = LEFT;
         break;
@@ -67,6 +65,7 @@ void Input() {
     }
   }
 }
+
 void Logic() {
   int prevX = tailX[0];
   int prevY = tailY[0];
@@ -130,34 +129,34 @@ void Output() {
   }
 }
 
-int _kbhit() {
-  std::cout << "Press any key to stop the loop..." << std::endl;
+// int _kbhit() {
+//   std::cout << "Press any key to stop the loop..." << std::endl;
 
-  while (!std::cin.fail()) {
-    if (std::cin.peek() != EOF) {
-      break;  // Прерываем цикл, если была нажата клавиша
-    }
-  }
+//   while (!std::cin.fail()) {
+//     if (std::cin.peek() != EOF) {
+//       break;  // Прерываем цикл, если была нажата клавиша
+//     }
+//   }
 
-  std::cout << "Key pressed! Exiting the program." << std::endl;
+//   std::cout << "Key pressed! Exiting the program." << std::endl;
 
-  return 0;
-}
+//   return 0;
+// }
 
-int _getch() {
-  char ch;
-  std::cout << "Press any key to stop the loop..." << std::endl;
+// int _getch() {
+//   char ch;
+//   std::cout << "Press any key to stop the loop..." << std::endl;
 
-  while (1) {
-    if (std::cin.get(ch)) {
-      break;  // Прерываем цикл, если была нажата клавиша
-    }
-  }
+//   while (1) {
+//     if (std::cin.get(ch)) {
+//       break;  // Прерываем цикл, если была нажата клавиша
+//     }
+//   }
 
-  std::cout << "Key pressed! Exiting the program." << std::endl;
+//   std::cout << "Key pressed! Exiting the program." << std::endl;
 
-  return 0;
-}
+//   return 0;
+// }
 // extern void Output();
 
 int main() {
