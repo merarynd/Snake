@@ -45,8 +45,8 @@ void Draw() {
 }
 
 void Input() {
-  if (_kbhit()) {
-    switch (_getch()) {
+  // if (_kbhit()) {
+    switch (getchar()) {
       case 'a':
         dir = LEFT;
         break;
@@ -62,7 +62,7 @@ void Input() {
       case 'x':
         gameOver = true;
         break;
-    }
+    // }
   }
 }
 
@@ -102,7 +102,7 @@ void Logic() {
   if (x >= width - 1)
     x = 0;
   else if (x < 0)
-    x = width - 2;
+    x = width - 1;
   if (y >= height)
     y = 0;
   else if (y < 0)

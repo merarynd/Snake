@@ -2,6 +2,7 @@
 #define S21_SNAKE_H_
 // #include <conio.h>
 #include <ncurses.h>
+#include <curses.h>
 
 #include <iostream>
 
